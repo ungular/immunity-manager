@@ -14,3 +14,8 @@ Web-mobile application focused on immunitary system. to monitor and boost immuni
 - psychology to improve mood: games/exercises, jokes, music, spirituality, positive affirmations...
 
 - practical solutions: suggestions and strategies to solve the reported problem(eg. how to wash your hands, when wearing a mask ...)
+
+#Tools
+- Gthub: https://github.com/ungular/immunity-manager
+- Trello: https://trello.com/b/qDZortcw
+- GoogleDocs: .https://drive.google.com/open?id=1vmycA1c4SB_wX-0gdS7nIMiRKPVBufLl
