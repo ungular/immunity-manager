@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "io.ionic.manager.immunity",
   "appName": "immunity-manager",
   "bundledWebRuntime": false,
   "npmClient": "npm",
