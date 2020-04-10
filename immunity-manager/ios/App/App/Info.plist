@@ -73,6 +73,10 @@
 	</array>
 	<key>NSHomeKitUsageDescription</key>
 	<string>Use HealthKit data to provide more accurate tips on immunity</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>Immunity manager would like to use the records to provide more accurate tips on the immunity</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Immunity manager would like to use the shared health data to provide more accurate tips on the immunity</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 </dict>

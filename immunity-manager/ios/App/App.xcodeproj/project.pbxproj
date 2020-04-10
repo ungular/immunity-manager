@@ -11,6 +11,7 @@
 		395E50D6244085A700DC98F9 /* StartupPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E50D5244085A700DC98F9 /* StartupPlugin.swift */; };
 		395E50D92440862D00DC98F9 /* StartupPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 395E50D82440862D00DC98F9 /* StartupPlugin.m */; };
 		395E50DC2440A64000DC98F9 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 395E50DB2440A64000DC98F9 /* HealthKit.framework */; };
+		395E50DF2440A75000DC98F9 /* HealthInfoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E50DE2440A75000DC98F9 /* HealthInfoProvider.swift */; };
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
 		504EC3081FED79650016851F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504EC3071FED79650016851F /* AppDelegate.swift */; };
 		504EC30D1FED79650016851F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30B1FED79650016851F /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		395E50D82440862D00DC98F9 /* StartupPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartupPlugin.m; sourceTree = "<group>"; };
 		395E50DA2440A64000DC98F9 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		395E50DB2440A64000DC98F9 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		395E50DE2440A75000DC98F9 /* HealthInfoProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthInfoProvider.swift; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,9 +74,18 @@
 			path = Plugin;
 			sourceTree = "<group>";
 		};
+		395E50DD2440A73D00DC98F9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				395E50DE2440A75000DC98F9 /* HealthInfoProvider.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		504EC2FB1FED79650016851F = {
 			isa = PBXGroup;
 			children = (
+				395E50DD2440A73D00DC98F9 /* Components */,
 				395E50D42440858000DC98F9 /* Plugin */,
 				504EC3061FED79650016851F /* App */,
 				504EC3051FED79650016851F /* Products */,
@@ -229,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395E50DF2440A75000DC98F9 /* HealthInfoProvider.swift in Sources */,
 				395E50D6244085A700DC98F9 /* StartupPlugin.swift in Sources */,
 				395E50D92440862D00DC98F9 /* StartupPlugin.m in Sources */,
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
