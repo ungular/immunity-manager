@@ -1,0 +1,8 @@
+{
+  "name": "immunity-manager",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "48a78b19"
+}
