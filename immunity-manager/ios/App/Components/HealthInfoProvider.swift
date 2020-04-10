@@ -1,8 +1,20 @@
 import HealthKit
 import Foundation
 
+struct ActivityProgress {
+  var energy: Double
+  var stand: Double
+  var exercise: Double
+  
+  var energyGoal: Double
+  var standGoal: Double
+  var exerciseGoal: Double
+}
+
+typealias ActivityProgressCallback = ((ActivityProgress?) -> ())?
+
 class HealthInfoProvider {
-  private var store: HKHealthStore?
+  static var store = HKHealthStore()
   
   class var energyUnit: HKUnit {
     return HKUnit.kilocalorie()
@@ -16,7 +28,7 @@ class HealthInfoProvider {
     return HKUnit.second()
   }
   
-  class var isDataAvailabe: Bool {
+  class var isDataAvailable: Bool {
     return HKHealthStore.isHealthDataAvailable()
   }
 }
@@ -24,20 +36,23 @@ class HealthInfoProvider {
 // MARK: Setup
 
 extension HealthInfoProvider {
-  func setup() {
-    guard HealthInfoProvider.isDataAvailabe else {
+  func setup() -> Bool {
+    guard HealthInfoProvider.isDataAvailable else {
       NSLog("HealtData is not available")
-      return
+      return false
     }
     
-    store = HKHealthStore()
+    // TODO: Do any additional setup
+    
+    return true
+
   }
 }
 
 // MARK: Public methods
 
 extension HealthInfoProvider {
-  func fetchActivityData() {
+  func fetchActivityData(completion: ActivityProgressCallback) {
     requestAuthorization { [weak self] success in
       guard let self = self else {
         return
@@ -47,7 +62,7 @@ extension HealthInfoProvider {
         return
       }
       
-      self.queryActivity()
+      self.queryActivity(completion: completion)
     }
   }
 }
@@ -55,7 +70,7 @@ extension HealthInfoProvider {
 // MARK: Private methods
 
 extension HealthInfoProvider {
-  private func queryActivity() {
+  private func queryActivity(completion: ActivityProgressCallback) {
     let predicate = generateActivityPredicate()
     
     let query = HKActivitySummaryQuery(predicate: predicate) { [weak self] query, summary, error in
@@ -73,20 +88,36 @@ extension HealthInfoProvider {
         return
       }
       
-      self.parse(summary: summary)
+      self.parse(summary: summary, completion: completion)
     }
     
-    store?.execute(query)
+    HealthInfoProvider.store.execute(query)
   }
   
-  private func parse(summary: [HKActivitySummary]) {
-    for activity in summary {
-      let energy = activity.activeEnergyBurned.doubleValue(for: HealthInfoProvider.energyUnit)
-      let stand = activity.appleStandHours.doubleValue(for: HealthInfoProvider.standUnit)
-      let exercise = activity.appleExerciseTime.doubleValue(for: HealthInfoProvider.exerciseUnit)
+  private func parse(summary: [HKActivitySummary], completion: ActivityProgressCallback) {
+    guard let activity = summary.first else {
+      completion?(nil)
+      return
     }
     
-    // TODO convert this into valuable data
+    let energy = activity.activeEnergyBurned.doubleValue(for: HealthInfoProvider.energyUnit)
+    let stand = activity.appleStandHours.doubleValue(for: HealthInfoProvider.standUnit)
+    let exercise = activity.appleExerciseTime.doubleValue(for: HealthInfoProvider.exerciseUnit)
+    
+    let energyGoal = activity.activeEnergyBurnedGoal.doubleValue(for: HealthInfoProvider.energyUnit)
+    let standGoal = activity.appleStandHoursGoal.doubleValue(for: HealthInfoProvider.standUnit)
+    let exerciseGoal = activity.appleExerciseTimeGoal.doubleValue(for: HealthInfoProvider.exerciseUnit)
+    
+    let progress = ActivityProgress(
+      energy: energy,
+      stand: stand,
+      exercise: exercise,
+      energyGoal: energyGoal,
+      standGoal: standGoal,
+      exerciseGoal: exerciseGoal
+    )
+    
+    completion?(progress)
   }
 }
 
@@ -113,7 +144,7 @@ extension HealthInfoProvider {
       HKObjectType.activitySummaryType()
     ]
     
-    store?.requestAuthorization(toShare: nil, read: objectTypes) { success, error in
+    HealthInfoProvider.store.requestAuthorization(toShare: nil, read: objectTypes) { success, error in
       if let error = error {
         NSLog("Permissions denied \(error.localizedDescription)")
         completion(false)
