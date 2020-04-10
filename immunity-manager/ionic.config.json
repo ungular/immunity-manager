@@ -1,7 +1,8 @@
 {
   "name": "immunity-manager",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular",
   "id": "48a78b19"
