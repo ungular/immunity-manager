@@ -10,6 +10,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     
+    provider = HealthInfoProvider()
+    provider?.setup()
+    
     // Override point for customization after application launch.
     return true
   }
@@ -29,6 +32,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   func applicationDidBecomeActive(_ application: UIApplication) {
+    guard let currentProvider = provider else {
+      return
+    }
+    
+    let alertController = UIAlertController()
+    
+    currentProvider.fetchActivityData { [weak self] progress in
+      guard let self = self else {
+        return
+      }
+      
+      DispatchQueue.main.async {
+        if let progress = progress {
+          alertController.title = "Activity Summary"
+          let message = "Energy: \(progress.energy), Stand: \(progress.stand), Exercise: \(progress.exercise)"
+          alertController.message = message
+          
+          let confirm = UIAlertAction(title: "Confrirm", style: .default, handler: nil)
+          alertController.addAction(confirm)
+          
+          if let rootController = self.window?.rootViewController {
+            rootController.present(alertController, animated: true, completion: nil)
+          }
+        }
+      }
+    }
+    
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
   }
 
