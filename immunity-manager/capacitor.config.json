@@ -1,0 +1,15 @@
+{
+  "appId": "io.ionic.manager.immunity",
+  "appName": "immunity-manager",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {},
+  "ios": {
+    "allowsLinkPreview": false
+  },
+  "server": {
+    "url": "http://192.168.1.232:8101",
+    "cleartext": true
+  }
+}
