@@ -55,10 +55,12 @@ extension HealthInfoProvider {
   func fetchActivityData(completion: ActivityProgressCallback) {
     requestAuthorization { [weak self] success in
       guard let self = self else {
+        completion?(nil)
         return
       }
       
       guard success else {
+        completion?(nil)
         return
       }
       

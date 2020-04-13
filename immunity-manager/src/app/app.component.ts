@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+
+import { Plugins } from "@capacitor/core"
+const { HealthPlugin } = Plugins
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,11 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      console.log("Launching the app");
+
+      const data = HealthPlugin.fetchActivityData().then((result) => { 
+        console.log(result.value)
+       });
     });
   }
 }
