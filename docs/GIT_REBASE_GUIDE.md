@@ -1,6 +1,6 @@
-# How to Git Rebase in Android Studio with GUI - Complete Tutorial
+# How to Git Rebase in Android Studio with GUI - Complete Tutorial with Screenshots
 
-A comprehensive guide to mastering Git rebase operations using Android Studio's built-in GUI tools. This tutorial covers all scenarios and workflows.
+A comprehensive guide to mastering Git rebase operations using Android Studio's built-in GUI tools. This tutorial covers all scenarios and workflows with detailed screenshots.
 
 ## Table of Contents
 
@@ -67,282 +67,990 @@ Feature Branch:                      E' --- F'
 
 ### Step 1: Open Git Branches Dialog
 
-1. Go to **VCS** (Version Control System) menu in Android Studio
-2. Select **Git** → **Branches**
-   
-**Visual Guide:** This opens the branches panel showing all local and remote branches.
+**Action:** Go to **VCS** (Version Control System) menu in Android Studio
+
+```
+Menu Path: VCS → Git → Branches
+Keyboard Shortcut: Ctrl+Shift+` (or Cmd+Shift+` on Mac)
+```
+
+**Screenshot Description:**
+```
+┌─────────────────────────────────────────────────────────┐
+│ Android Studio - Main Menu                              │
+├─────────────────────────────────────────────────────────┤
+│ File  Edit  View  Navigate  Code  Analyze  Refactor      │
+│ Build  Run  Tools  VCS  Window  Help                     │
+│                  ▼                                        │
+│                ┌─ Git                                    │
+│                │  ├─ Commit...           (Ctrl+K)       │
+│                │  ├─ Push...             (Ctrl+Shift+K) │
+│                │  ├─ Pull...             (Ctrl+Alt+L)   │
+│                │  ├─ Fetch                               │
+│                │  ├─ Branches            (Ctrl+Shift+`) │
+│                │  ├─ Rebase...           ◄───── CLICK   │
+│                │  ├─ Merge...                            │
+│                │  ├─ Reset HEAD...                       │
+│                │  └─ Stash...                            │
+│                │                                         │
+└─────────────────────────────────────────────────────────┘
+```
 
 ### Step 2: Navigate to Your Feature Branch
 
-1. In the Branches panel (usually right side)
-2. Locate your feature branch
-3. Right-click on it and select **Checkout**
+**Action:** Switch to your feature branch before rebasing
+
+```
+1. Click: VCS → Git → Branches
+2. Find your feature branch in the Branches panel (right sidebar)
+3. Right-click on it
+4. Select: Checkout
+```
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────┐
+│ Git Branches Panel (Right Sidebar)    │
+├──────────────────────────────────────┤
+│ 📁 Local Branches                    │
+│  ├─ ✓ main (current branch)          │
+│  ├─ feature/user-auth                │
+│  ├─ feature/payment-integration      │
+│  └─ bugfix/ui-crash                  │
+│                                       │
+│ 📁 Remote Branches                   │
+│  ├─ origin/main                      │
+│  ├─ origin/develop                   │
+│  └─ origin/feature/new-api           │
+│                                       │
+│ (Right-click on feature branch)      │
+│ ┌────────────────────────────────┐  │
+│ │ ✓ Checkout                     │  │
+│ │ Delete Branch...               │  │
+│ │ Copy Branch Name               │  │
+│ │ Create Pull Request            │  │
+│ └────────────────────────────────┘  │
+└──────────────────────────────────────┘
+```
 
 ### Step 3: Open Rebase Dialog
 
-1. Go to **VCS** → **Git** → **Rebase**
+**Action:** Open the Git Rebase dialog
+
+```
+Menu Path: VCS → Git → Rebase...
+```
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│                 Git Rebase Dialog                       │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ☐ Interactive                                          │
+│  ☐ Preserve merges                                      │
+│  ☐ Dry run                                              │
+│                                                         │
+│  Onto:  [dropdown: origin/main                    ] ▼   │
+│  From:  [                                          ]    │
+│                                                         │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │ ✅ Rebase                  ❌ Cancel            │   │
+│  └─────────────────────────────────────────────────┘   │
+│                                                         │
+│  Current Branch: feature/user-auth                      │
+│  Commits to rebase: 3                                   │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ### Step 4: Configure Rebase Settings
 
-1. **Onto** field: Select the branch you want to rebase onto (e.g., `origin/main`)
-2. **From** field: Usually empty (rebases current branch)
-3. Click **Rebase**
+**Action:** Set up rebase parameters
+
+```
+1. Onto field: Select origin/main (or your target branch)
+2. From field: Leave empty (rebases current branch)
+3. Checkboxes:
+   ☐ Interactive: Uncheck for simple rebase
+   ☐ Preserve merges: Check if needed
+   ☐ Dry run: Check to preview first
+```
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│                 Git Rebase Dialog                       │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ☐ Interactive                    ← Uncheck            │
+│  ☐ Preserve merges                                      │
+│  ☐ Dry run                                              │
+│                                                         │
+│  Onto:  [origin/main                          ] ▼       │
+│           └─ Select your target branch                  │
+│  From:  [                                      ]        │
+│                                                         │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │ ✅ Rebase                  ❌ Cancel            │   │
+│  └─────────────────────────────────────────────────┘   │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ### Step 5: Monitor Progress
 
-Android Studio shows the rebase progress in the Git pane:
-- ✅ Commits being replayed
-- Shows percentage completion
-- Displays current commit information
+**Action:** Watch the rebase progress in real-time
 
-### Step 6: Completion
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Git Console Output (Bottom Panel)                       │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ > git rebase origin/main                               │
+│ Rebasing (3/3)                                          │
+│ [████████████████░░░░░] 66%                            │
+│                                                         │
+│ Applying: Add user authentication                       │
+│ Applying: Fix login form validation                     │
+│ Applying: Update API endpoints                          │
+│                                                         │
+│ Current commit: a1b2c3d                                 │
+│ Commit message: Update API endpoints                    │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
-When successful, you'll see:
-- "Rebase completed successfully" message
-- Your branch now has the latest commits from main
-- History is linear
+### Step 6: Completion Message
+
+**Action:** Verify successful rebase completion
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Notification (Top Right)                               │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ✅ Rebase Completed Successfully                      │
+│                                                         │
+│  Branch: feature/user-auth                             │
+│  New base: origin/main (abc1234)                        │
+│  Commits rebased: 3                                     │
+│  Duration: 2.3 seconds                                  │
+│                                                         │
+│  [View History]  [Close]                               │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## Scenario 2: Interactive Rebase
 
-Interactive rebase allows you to modify commits during the rebase process.
+### Step 1: Open Interactive Rebase Dialog
 
-### Step 1: Open Interactive Rebase
-
-1. Go to **VCS** → **Git** → **Rebase**
-2. Check the **Interactive** checkbox
-3. Specify your **Onto** branch
-
-### Step 2: Rebase Interactive Editor Opens
-
-The editor shows all commits to be rebased:
+**Action:** Enable interactive mode for advanced commit manipulation
 
 ```
-pick 12a3b4c Add feature A
-pick 45d6e7f Add feature B
-pick 78g9h0i Fix bug in feature B
-
-# Rebase abc1234..78g9h0i onto abc1234 (3 commands)
-#
-# Commands:
-# p, pick <commit> = use commit
-# r, reword <commit> = use commit, but edit the commit message
-# e, edit <commit> = use commit, but stop for amending
-# s, squash <commit> = use commit, but meld into previous commit
-# f, fixup <commit> = like "squash", but discard this commit's log message
-# x, exec <command> = run command (the rest of the line) using shell
-# b, break = stop here (continue rebase later with 'git rebase --continue')
-# d, drop <commit> = remove commit
-# l, label <commit> = label current HEAD with a name
-# t, reset <commit> = reset HEAD to a label
-# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
-# u, update-ref <ref>
+Menu Path: VCS → Git → Rebase...
 ```
 
-### Step 3: Choose Your Action
-
-#### Example 1: Squash Commits
-
-Replace `pick` with `squash` (or `s`) for commits you want to combine:
-
+**Screenshot Description:**
 ```
-pick 12a3b4c Add feature A
-squash 45d6e7f Add feature B
-squash 78g9h0i Fix bug in feature B
-```
-
-**Result:** All three commits merge into one with a combined message.
-
-#### Example 2: Reword Commits
-
-Replace `pick` with `reword` (or `r`) to edit commit messages:
-
-```
-reword 12a3b4c Add feature A
-pick 45d6e7f Add feature B
-```
-
-**Result:** You'll be prompted to edit the message for the first commit.
-
-#### Example 3: Drop Commits
-
-Replace `pick` with `drop` (or `d`) to remove commits:
-
-```
-pick 12a3b4c Add feature A
-drop 45d6e7f Add feature B
-pick 78g9h0i Fix bug
+┌────────────────────────────────────────────────────────┐
+│                 Git Rebase Dialog                       │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ☑ Interactive                    ← CHECK THIS         │
+│  ☐ Preserve merges                                      │
+│  ☐ Dry run                                              │
+│                                                         │
+│  Onto:  [origin/main                          ] ▼       │
+│  From:  [                                      ]        │
+│                                                         │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │ ✅ Rebase                  ❌ Cancel            │   │
+│  └─────────────────────────────────────────────────┘   │
+│                                                         │
+│  ⓘ Interactive mode allows you to:                    │
+│    • Reorder commits                                    │
+│    • Squash (combine) commits                           │
+│    • Reword commit messages                             │
+│    • Drop commits                                       │
+│                                                         │
+└────────────────────────────────────────────────────────┘
 ```
 
-**Result:** The second commit is completely removed from history.
+### Step 2: Interactive Rebase Editor Opens
 
-### Step 4: Save and Continue
+**Action:** Modify commit actions in the editor
 
-1. Save the interactive rebase editor file
-2. Android Studio processes each action in sequence
-3. For each `reword`, you'll be prompted to edit the message
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Interactive Rebase Editor (New Window)                       │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ pick 12a3b4c Add user authentication                         │
+│ pick 45d6e7f Fix login form validation                       │
+│ pick 78g9h0i Update API endpoints                            │
+│                                                               │
+│ # Rebase abc1234..78g9h0i onto abc1234 (3 commands)         │
+│ #                                                             │
+│ # Commands:                                                   │
+│ # p, pick <commit> = use commit                              │
+│ # r, reword <commit> = use commit, but edit the message     │
+│ # e, edit <commit> = use commit, but stop for amending      │
+│ # s, squash <commit> = use commit, but meld into previous   │
+│ # f, fixup <commit> = like "squash", but discard log msg    │
+│ # d, drop <commit> = remove commit                           │
+│ # x, exec <command> = run command (the rest of the line)    │
+│                                                               │
+│ [Save]  [Cancel]                                             │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
 
-### Step 5: Completion
+### Step 3: Example 1 - Squash Commits
 
-When all actions complete:
-- Your commits are reorganized as specified
-- Linear history is maintained
-- Branch is ready for review/merge
+**Action:** Combine multiple commits into one
+
+**Before:**
+```
+pick 12a3b4c Add user authentication
+pick 45d6e7f Fix login form validation
+pick 78g9h0i Update API endpoints
+```
+
+**After (edited):**
+```
+pick 12a3b4c Add user authentication
+squash 45d6e7f Fix login form validation
+squash 78g9h0i Update API endpoints
+```
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Interactive Rebase Editor - SQUASH EXAMPLE                  │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ pick 12a3b4c Add user authentication                         │
+│ squash 45d6e7f Fix login form validation      ← Changed      │
+│ squash 78g9h0i Update API endpoints           ← Changed      │
+│                                                               │
+│ # Result: All 3 commits will be combined into 1              │
+│ # You'll be prompted to edit the combined commit message     │
+│                                                               │
+│ [Save]  [Cancel]                                             │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+**After Squash - Commit Message Editor:**
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Edit Combined Commit Message                                 │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ # This is a combination of 3 commits.                         │
+│ # This is the 1st commit message:                             │
+│                                                               │
+│ Add user authentication                                       │
+│                                                               │
+│ # This is the commit message #2:                              │
+│ # Fix login form validation                                   │
+│                                                               │
+│ # This is the commit message #3:                              │
+│ # Update API endpoints                                        │
+│                                                               │
+│ # Edit above to create final commit message                   │
+│                                                               │
+│ [Save]  [Cancel]                                             │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### Step 4: Example 2 - Reword Commits
+
+**Action:** Edit commit messages
+
+**Before:**
+```
+pick 12a3b4c Add user authentication
+pick 45d6e7f Fix login form validation
+pick 78g9h0i Update API endpoints
+```
+
+**After (edited):**
+```
+reword 12a3b4c Add user authentication
+pick 45d6e7f Fix login form validation
+pick 78g9h0i Update API endpoints
+```
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Interactive Rebase Editor - REWORD EXAMPLE                  │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ reword 12a3b4c Add user authentication       ← Changed       │
+│ pick 45d6e7f Fix login form validation                       │
+│ pick 78g9h0i Update API endpoints                            │
+│                                                               │
+│ # When saved, you'll be prompted to edit this commit's       │
+│ # message before continuing                                  │
+│                                                               │
+│ [Save]  [Cancel]                                             │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### Step 5: Example 3 - Drop Commits
+
+**Action:** Remove commits from history
+
+**Before:**
+```
+pick 12a3b4c Add user authentication
+pick 45d6e7f Fix login form validation
+pick 78g9h0i Update API endpoints
+```
+
+**After (edited):**
+```
+pick 12a3b4c Add user authentication
+drop 45d6e7f Fix login form validation
+pick 78g9h0i Update API endpoints
+```
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Interactive Rebase Editor - DROP EXAMPLE                    │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ pick 12a3b4c Add user authentication                         │
+│ drop 45d6e7f Fix login form validation       ← Changed       │
+│ pick 78g9h0i Update API endpoints                            │
+│                                                               │
+│ # The second commit will be completely removed from history  │
+│ # Result: Only 2 commits instead of 3                        │
+│                                                               │
+│ [Save]  [Cancel]                                             │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### Step 6: Save and Process
+
+**Action:** Save changes and let Android Studio process
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Processing Interactive Rebase                          │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ Git Console Output:                                     │
+│                                                         │
+│ > git rebase -i origin/main                            │
+│ Rebasing (2/3)                                          │
+│ [████████████░░░░░░░░░░] 66%                           │
+│                                                         │
+│ [1/3] Rebasing: Add user authentication (12a3b4c)      │
+│ ✅ Complete                                             │
+│                                                         │
+│ [2/3] Squashing: Fix login form validation (45d6e7f)  │
+│ ⏳ In progress...                                        │
+│                                                         │
+│ [3/3] Rebasing: Update API endpoints (78g9h0i)         │
+│ ⏳ Pending...                                            │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
+
+### Step 7: Completion
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Notification (Top Right)                               │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ✅ Interactive Rebase Completed                       │
+│                                                         │
+│  Actions performed:                                     │
+│  • Picked: Add user authentication                      │
+│  • Squashed: Fix login form validation                  │
+│  • Picked: Update API endpoints                         │
+│                                                         │
+│  Result: 2 commits (down from 3)                        │
+│  Duration: 1.8 seconds                                  │
+│                                                         │
+│  [View History]  [Close]                               │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## Scenario 3: Rebase onto Master/Main
 
-This scenario handles rebasing your feature branch onto the latest main branch.
-
 ### Step 1: Fetch Latest Changes
 
-1. Go to **VCS** → **Git** → **Fetch**
-2. Or press **Ctrl+Shift+K** (Cmd+Shift+K on Mac)
+**Action:** Update remote tracking branches
 
-This ensures you have the latest main branch commits.
+```
+Menu Path: VCS → Git → Fetch
+Keyboard: Ctrl+Alt+Shift+K
+```
 
-### Step 2: Switch to Feature Branch
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Git Console - Fetch Operation                          │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ > git fetch origin                                      │
+│ From github.com:ungular/immunity-manager                │
+│  * branch            main       -> FETCH_HEAD           │
+│  * branch            develop    -> FETCH_HEAD           │
+│  * [new branch]      feature/api-v2 -> origin/feature/..│
+│                                                          │
+│ ✅ Fetch completed successfully                         │
+│ Updated 3 remote branches                               │
+│ Downloaded 5 new commits                                │
+│                                                          │
+└────────────────────────────────────────────────────────┘
+```
 
-1. Go to **VCS** → **Git** → **Branches**
-2. Find your feature branch
-3. Right-click and select **Checkout**
+### Step 2: Checkout Feature Branch
+
+**Action:** Switch to your feature branch
+
+```
+VCS → Git → Branches → Right-click feature branch → Checkout
+```
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────┐
+│ Git Branches Panel                                   │
+├──────────────────────────────────────────────────────┤
+│ 📁 Local Branches                                    │
+│  ├─ main                                             │
+│  ├─ ✓ feature/user-auth        ← Current branch     │
+│  └─ bugfix/ui-crash                                  │
+│                                                       │
+│ 📁 Remote Branches                                   │
+│  ├─ origin/main                                      │
+│  └─ origin/feature/user-auth                         │
+│                                                       │
+│ Status: Checked out branch 'feature/user-auth'      │
+│                                                       │
+└──────────────────────────────────────────────────────┘
+```
 
 ### Step 3: Open Rebase Dialog
 
-1. **VCS** → **Git** → **Rebase**
-2. In the **Onto** field, select your main branch (usually `origin/main` or `origin/master`)
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│                 Git Rebase Dialog                       │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ☐ Interactive                                          │
+│  ☑ Preserve merges            ← Can be useful         │
+│  ☐ Dry run                                              │
+│                                                         │
+│  Onto:  [origin/main                          ] ▼       │
+│           ├─ origin/main          ← SELECT THIS         │
+│           ├─ origin/develop                             │
+│           ├─ origin/feature/api-v2                      │
+│           └─ main (local)                               │
+│  From:  [                                      ]        │
+│                                                         │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │ ✅ Rebase                  ❌ Cancel            │   │
+│  └─────────────────────────────────────────────────┘   │
+│                                                         │
+│  Current Branch: feature/user-auth                      │
+│  Commits to rebase: 4                                   │
+│  Target: origin/main (5 new commits since branch)      │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
-### Step 4: Configure Additional Options
+### Step 4: Execution and Result
 
-- **Interactive**: Uncheck unless you need to modify commits
-- **Preserve merges**: Check if you have merge commits to preserve
-- **Dry run**: Check to preview without applying (optional)
-
-### Step 5: Execute Rebase
-
-Click **Rebase** button. Android Studio will:
-1. Apply your commits on top of main
-2. Show progress bar
-3. Detect any conflicts automatically
-
-### Step 6: Verify Result
-
-After completion, you'll see:
-- Feature branch is now up-to-date with main
-- All your commits are preserved
-- Linear commit history
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Git Console - Rebase Execution                         │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ > git rebase origin/main                               │
+│ Rebasing (4/4)                                          │
+│ [████████████████████] 100%                            │
+│                                                         │
+│ Successfully rebased and updated feature/user-auth     │
+│                                                         │
+│ ✅ Rebase Completed                                     │
+│ Your branch is now 9 commits ahead of 'origin/main'    │
+│                                                         │
+│ Branch Statistics:                                      │
+│ ├─ Local commits: 4                                     │
+│ ├─ Origin/main latest: abc1234                          │
+│ ├─ Your HEAD: xyz9876                                   │
+│ └─ Linear history: ✅ Yes                               │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## Scenario 4: Handling Merge Conflicts
 
-Conflicts occur when the same lines are modified in both branches.
-
 ### Step 1: Identify Conflicts
 
-During rebase, Android Studio stops and shows:
-- Red X icon on the conflicted file
-- Conflict markers in the code
-- Notification popup
+**Action:** Rebase detects and stops at conflicted commit
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Conflict Notification (Top Right)                      │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ⚠️  Conflicts During Rebase                           │
+│                                                         │
+│  Conflict in: src/auth/LoginScreen.kt                  │
+│              src/api/ApiClient.kt                      │
+│                                                         │
+│  Conflicted Files: 2/15                                │
+│  Status: REBASE IN PROGRESS                            │
+│                                                         │
+│  [Resolve Conflicts]  [Abort Rebase]                   │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────┐
+│ Project Tree - Conflict Indicators                     │
+├────────────────────────────────────────────────────────┤
+│ 📁 src                                                  │
+│  ├─ 📁 auth                                             │
+│  │  ├─ 🔴 LoginScreen.kt              ← Red = Conflict │
+│  │  └─ AuthViewModel.kt                                │
+│  ├─ 📁 api                                              │
+│  │  ├─ 🔴 ApiClient.kt                ← Red = Conflict │
+│  │  └─ ApiRequest.kt                                   │
+│  └─ 📁 ui                                               │
+│     └─ MainActivity.kt                                  │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ### Step 2: Open Merge Conflict Resolver
 
-1. Click on the conflicted file in the editor
-2. Or go to **VCS** → **Git** → **Resolve Conflicts**
+**Action:** Click on conflicted file to open 3-way merge view
 
-Android Studio's three-way merge view shows:
-- **Left panel**: Your changes (current branch)
-- **Center panel**: Merged result (editable)
-- **Right panel**: Incoming changes (branch being rebased onto)
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Three-Way Merge View                                         │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ File: LoginScreen.kt                                         │
+│ Status: ⚠️  Has Conflicts                                     │
+│                                                               │
+│ ┌─────────────────┬──────────────────┬─────────────────┐    │
+│ │  YOUR CHANGES   │   MERGE RESULT   │ INCOMING (MAIN) │    │
+│ │  (Current)      │   (Editable)     │ (origin/main)   │    │
+│ ├─────────────────┼──────────────────┼─────────────────┤    │
+│ │                 │                  │                 │    │
+│ │ fun loginUser( │ fun loginUser(   │ fun loginUser( │    │
+│ │   email: String│   email: String, │   email: String,│    │
+│ │   password: Str│   password: Str, │   password: Str,│    │
+│ │ ): Boolean {   │   timestamp: Long │ ): Boolean {   │    │
+│ │   return auth  │ ): Boolean {      │   validateEmail │    │
+│ │   .login(email │   validateEmail( │   (email)       │    │
+│ │   , password)  │     email        │   return auth   │    │
+│ │ }              │   )              │   .login(email) │    │
+│ │                │   return auth    │ }               │    │
+│ │                │   .login(        │                 │    │
+│ │                │     email,       │                 │    │
+│ │                │     timestamp    │                 │    │
+│ │                │   )              │                 │    │
+│ │                │ }                │                 │    │
+│ │                │                  │                 │    │
+│ ├─────────────────┼──────────────────┼─────────────────┤    │
+│ │ [✅ Accept Yours] [Accept Both] [Accept Theirs] [Edit]│    │
+│ └─────────────────┴──────────────────┴─────────────────┘    │
+│                                                               │
+│ Legend:                                                       │
+│  • Green background = Accepted changes                        │
+│  • Blue background = Conflicting section                      │
+│  • Gray background = Unchanged code                           │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
 
-### Step 3: Resolve Using GUI
+### Step 3: Resolution Options
 
 #### Option A: Accept Your Changes
-- Click **Accept Yours** button (left side)
-- Keeps your version
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Three-Way Merge View - After "Accept Yours"                 │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ Conflict Resolved: Your version kept                         │
+│                                                               │
+│ fun loginUser(                                                │
+│   email: String                                               │
+│   password: String                                            │
+│ ): Boolean {                                                  │
+│   return auth.login(email, password)  ✅ Your version        │
+│ }                                                              │
+│                                                               │
+│ Conflict Resolution: ✅ ACCEPTED YOURS (50%)                │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
 
 #### Option B: Accept Incoming Changes
-- Click **Accept Theirs** button (right side)
-- Takes their version
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Three-Way Merge View - After "Accept Theirs"                │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ Conflict Resolved: Their version kept                        │
+│                                                               │
+│ fun loginUser(                                                │
+│   email: String,                                              │
+│   password: String,                                           │
+│ ): Boolean {                                                  │
+│   validateEmail(email)                                        │
+│   return auth.login(email)  ✅ Their version (from main)     │
+│ }                                                              │
+│                                                               │
+│ Conflict Resolution: ✅ ACCEPTED THEIRS (50%)               │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
 
 #### Option C: Accept Both Changes
-- Click **Accept Both** button
-- Merges both versions
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Three-Way Merge View - After "Accept Both"                  │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ Conflict Resolved: Both versions combined                    │
+│                                                               │
+│ fun loginUser(                                                │
+│   email: String,                                              │
+│   password: String,                                           │
+│   timestamp: Long                      ✅ From their version  │
+│ ): Boolean {                                                  │
+│   validateEmail(email)                 ✅ From their version  │
+│   return auth.login(email, password)   ✅ From your version   │
+│ }                                                              │
+│                                                               │
+│ Conflict Resolution: ✅ ACCEPTED BOTH (100%)                │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
 
 #### Option D: Manual Resolution
-1. Click in the **center panel** (merge result)
-2. Edit the code directly to resolve the conflict
-3. Remove conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
+
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────────┐
+│ Manual Merge Resolution                                      │
+├──────────────────────────────────────────────────────────────┤
+│                                                               │
+│ Click in center panel to manually edit:                      │
+│                                                               │
+│ fun loginUser(                                                │
+│   email: String,                                              │
+│   password: String,                                           │
+│   timestamp: Long = System.currentTimeMillis()               │
+│ ): Boolean {                                                  │
+│   // Validate both email and password                         │
+│   if (!validateEmail(email)) return false                     │
+│   if (password.length < 8) return false                       │
+│                                                               │
+│   // Call API with all parameters                             │
+│   return auth.login(email, password, timestamp)               │
+│ }                                                              │
+│                                                               │
+│ ✏️  Manually merged: Took best from both sides               │
+│ Conflict Markers Removed: ✅ Yes                             │
+│                                                               │
+└──────────────────────────────────────────────────────────────┘
+```
 
 ### Step 4: Mark as Resolved
 
-After resolving the conflict:
-1. The file should show no conflict markers
-2. Click the **✓ Mark as Resolved** button
+**Action:** After resolving, mark the file as resolved
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Conflict Resolution UI                                 │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ File: LoginScreen.kt                                   │
+│ Status: ⚠️  Manually Resolved                          │
+│                                                         │
+│  Changes:                                               │
+│  ✅ Merged login function signature                     │
+│  ✅ Combined validation logic                           │
+│  ✅ Added timestamp parameter with default              │
+│                                                         │
+│  ┌────────────────────────────────────────┐            │
+│  │ ✓ Mark as Resolved                     │            │
+│  │ 🔄 Undo Changes                        │            │
+│  │ 📋 Show Diff                           │            │
+│  └────────────────────────────────────────┘            │
+│                                                         │
+│ [Continue Rebase]  [Abort Rebase]                       │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ### Step 5: Continue Rebase
 
-1. After all conflicts are resolved, click **VCS** → **Git** → **Continue Rebase**
-2. Or use the notification popup with the **Continue** button
+**Action:** After all conflicts resolved, continue rebase
 
-### Step 6: Handle Multiple Conflicts
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Git Console - Continuing Rebase                        │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ > git rebase --continue                                │
+│                                                         │
+│ Rebasing (2/4)                                          │
+│ [████████░░░░░░░░░░░░] 50%                             │
+│                                                         │
+│ [1/4] ✅ Applying: Add user authentication             │
+│ [2/4] ✅ Applying: Update login validation             │
+│           └─ Resolved 2 conflicts                       │
+│ [3/4] ⏳ Applying: Fix API client                      │
+│ [4/4] ⏳ Pending...                                     │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
-If there are more conflicted commits:
-1. Repeat steps 2-5 for each conflict
-2. Android Studio will guide you through each one sequentially
+### Step 6: Multiple Conflicts
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Multiple Conflict Resolution Progress                  │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ Rebasing Progress:                                      │
+│                                                         │
+│ Conflict 1/2:                                           │
+│ File: LoginScreen.kt                                    │
+│ Status: ✅ RESOLVED                                     │
+│                                                         │
+│ Conflict 2/2:                                           │
+│ File: ApiClient.kt                                      │
+│ Status: ⏳ CURRENT                                      │
+│ ├─ Line 45: Method signature mismatch                  │
+│ ├─ Line 67: Parameter addition                         │
+│ └─ Line 89: Return type difference                      │
+│                                                         │
+│ Conflicts Remaining: 1                                  │
+│                                                         │
+│ [Resolve Next]  [View All]                             │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ### Step 7: Final Completion
 
-When all conflicts are resolved:
-- Rebase completes successfully
-- All commits are applied
-- Clean merge history
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Conflict Resolution Complete                           │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ✅ All Conflicts Resolved                             │
+│                                                         │
+│  Summary:                                               │
+│  ├─ Files processed: 2                                  │
+│  ├─ Conflicts resolved: 2                               │
+│  ├─ Manual edits: 1                                     │
+│  └─ Rebase status: SUCCESS                              │
+│                                                         │
+│  Rebasing (4/4)                                         │
+│  [████████████████████] 100%                            │
+│                                                         │
+│  > git rebase --continue                                │
+│  Successfully rebased and updated feature/user-auth     │
+│                                                         │
+│  ✅ Rebase Completed Successfully                       │
+│                                                         │
+│  [View History]  [Close]                               │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ---
 
 ## Scenario 5: Rebase Abort and Recovery
 
-Sometimes you need to abort or recover from a failed rebase.
-
 ### Step 1: Abort Current Rebase
 
-If you're in the middle of a rebase and want to cancel:
+**Action:** Cancel rebase in progress
 
-1. Go to **VCS** → **Git** → **Rebase** → **Abort Rebase**
-2. Or use command palette: **Ctrl+Shift+A** (Cmd+Shift+A on Mac) and search "abort"
+```
+Menu Path: VCS → Git → Rebase → Abort Rebase
+```
+
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ VCS Menu - During Rebase                               │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ Git                                                     │
+│  ├─ Commit...                                           │
+│  ├─ Push...                                             │
+│  ├─ Rebase...                                           │
+│  │  ├─ Abort Rebase              ◄─── CLICK THIS      │
+│  │  └─ Continue Rebase                                 │
+│  ├─ Merge...                                            │
+│  └─ ...                                                 │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
 ### Step 2: Confirmation Dialog
 
-Android Studio shows a confirmation:
-- "Are you sure you want to abort rebase?"
-- Click **Abort** to confirm
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Abort Rebase Confirmation                              │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ⚠️  Are you sure you want to abort rebase?            │
+│                                                         │
+│  Current Status:                                        │
+│  • Branch: feature/user-auth                            │
+│  • Commits processed: 2/4                               │
+│  • Conflicts: 1 unresolved                              │
+│  • Changes will be DISCARDED                            │
+│                                                         │
+│  After abort:                                           │
+│  • Your branch will return to pre-rebase state          │
+│  • Working directory will be restored                   │
+│  • No commits will be lost                              │
+│                                                         │
+│  ┌────────────────────────────────────────┐            │
+│  │ ✅ Yes, Abort      ❌ Cancel, Continue │            │
+│  └────────────────────────────────────────┘            │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
-### Step 3: Verify Abort
+### Step 3: Abort Success
 
-After abort:
-- Your branch returns to the state before rebase
-- Working directory is restored
-- No commits are lost
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Rebase Aborted Successfully                            │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│  ✅ Rebase Aborted                                      │
+│                                                         │
+│  Status:                                                │
+│  • Branch: feature/user-auth (back to original state)  │
+│  • HEAD: xyz1234 (before rebase)                        │
+│  • Working directory: CLEAN                             │
+│  • Rebase in progress: ❌ NO                             │
+│                                                         │
+│  Git Console Output:                                    │
+│  > git rebase --abort                                   │
+│  ✅ Rebase aborted                                      │
+│                                                         │
+│  Your branch is back to pre-rebase condition            │
+│                                                         │
+│  [View History]  [Close]                               │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
-### Step 4: Recovery from Failed Rebase (Git Reflog)
+### Step 4: Recovery with Git Reflog
 
-If something goes wrong and you need to recover:
+**Action:** Recover from failed rebase using terminal
 
-1. Open **Terminal** in Android Studio (**View** → **Tool Windows** → **Terminal**)
-2. Run: `git reflog`
-3. Find your previous HEAD state (usually `HEAD@{0}`, `HEAD@{1}`, etc.)
-4. Run: `git reset --hard HEAD@{n}` to recover
+**Screenshot Description:**
+```
+┌────────────────────────────────────────────────────────┐
+│ Terminal - Git Reflog                                  │
+├────────────────────────────────────────────────────────┤
+│                                                         │
+│ $ git reflog                                            │
+│ xyz1234 (HEAD -> feature/user-auth) HEAD@{0}: rebase   │
+│ abc5678 HEAD@{1}: rebase: Add user authentication      │
+│ def9012 HEAD@{2}: checkout: moving from main to feat..│
+│ ghi3456 HEAD@{3}: commit: Update API endpoints         │
+│ jkl7890 HEAD@{4}: commit: Fix login validation         │
+│ mno1234 HEAD@{5}: commit: Add user authentication      │
+│                                                         │
+│ $ git reset --hard HEAD@{5}                             │
+│ HEAD is now at mno1234 Add user authentication         │
+│                                                         │
+│ ✅ Successfully recovered to commit mno1234            │
+│                                                         │
+└────────────────────────────────────────────────────────┘
+```
 
-### Step 5: Using Git History in Android Studio
+### Step 5: Using Git History GUI
 
-Alternative method using GUI:
+**Action:** Visual recovery using Android Studio's Git History
 
-1. Go to **VCS** → **Git** → **Show History**
-2. Find your desired commit
-3. Right-click → **Reset Current Branch to Here**
-4. Select **Hard** reset
+**Screenshot Description:**
+```
+┌──────────────────────────────────────────────────────────┐
+│ Git Log / History View                                   │
+├──────────────────────────────────────────────────────────┤
+│                                                           │
+│ ✓ feature/user-auth                                      │
+│                                                           │
+│ Commit      │ Author          │ Date        │ Message    │
+│─────────────┼─────────────────┼─────────────┼────────────│
+│ xyz1234 ... │ Your Name       │ Now         │ Rebase... │
+│ abc5678 ... │ Your Name       │ 10 min ago  │ Rebase... │
+│ def9012 ... │ Your Name       │ 20 min ago  │ Checkout  │
+│ ghi3456 ... │ Your Name       │ 1 hour ago  │ Update API│
+│ jkl7890 ... │ Your Name       │ 2 hours ago │ Fix login │
+│ mno1234 ... │ Your Name       │ 3 hours ago │ Add auth  │◄─
+│                                                           │
+│ (Right-click on any commit)                              │
+│ ┌──────────────────────────────────────────────┐        │
+│ │ Reset Current Branch to Here                 │        │
+│ │ ├─ Soft (keep changes)                       │        │
+│ │ ├─ Mixed (index to working)                  │        │
+│ │ └─ Hard (discard all)                        │        │
+│ └──────────────────────────────────────────────┘        │
+│                                                           │
+└──────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -498,9 +1206,9 @@ Git rebase is a powerful tool that:
 - Should only be used on local branches
 
 With Android Studio's GUI tools, rebasing becomes intuitive and safer:
-- Visual conflict resolution
-- Step-by-step guidance
-- Easy abort options
+- Visual conflict resolution with three-way merge view
+- Step-by-step guidance for interactive operations
+- Easy abort options for recovery
 - Integration with project structure
 
 Master these scenarios, follow best practices, and you'll dramatically improve your Git workflow!
